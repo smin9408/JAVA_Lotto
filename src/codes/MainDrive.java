@@ -47,29 +47,47 @@ public class MainDrive {
 
 		for (int i = 0; i < lottoNumbers.length; i++) {
 
-			while(true) {
-				
+			while (true) {
+
 //				Math.random() =>  1 <= 랜덤 값 < 46
-				int randomNum = (int)(Math.random()*45+1);
-				
+				int randomNum = (int) (Math.random() * 45 + 1);
+
 				boolean isDupOk = true;
-				
+
 				for (int num : lottoNumbers) {
-					if(num == randomNum) {
+					if (num == randomNum) {
 						isDupOk = false;
 						break;
 					}
 				}
-				
-				if(isDupOk) {
+
+				if (isDupOk) {
 					lottoNumbers[i] = randomNum;
 					break;
 				}
 			}
 		}
-		
-		for(int num : lottoNumbers) {
+
+//		임시 당첨 번호 선정 -> 담청 등수 로직 테스트용
+		lottoNumbers[0] = 10;
+		lottoNumbers[1] = 11;
+		lottoNumbers[2] = 20;
+		lottoNumbers[3] = 21;
+		lottoNumbers[4] = 30;
+		lottoNumbers[5] = 35;
+
+		for (int num : lottoNumbers) {
 			System.out.println(num);
+		}
+		
+		int correctCount = 0;
+
+		for (int myNum : myNumbers) {
+			for (int winNum : lottoNumbers) {
+				if(myNum == winNum) {
+					correctCount++;
+				}
+			}
 		}
 
 	}
