@@ -68,6 +68,27 @@ public class MainDrive {
 			}
 		}
 
+//		보너스 번호 뽑기
+//		제약사항 : 1 ~ 45 중 하나. 기존의 당첨번호와 중복 X
+
+		int bonusNum = 0;
+		while (true) {
+			int randomNum = (int) (Math.random() * 45 + 1);
+
+			boolean isDupOk = true;
+
+			for (int num : lottoNumbers) {
+				if (randomNum == num) {
+					isDupOk = false;
+					break;
+				}
+			}
+			if (isDupOk) {
+				bonusNum = randomNum;
+				break;
+			}
+		}
+
 //		임시 당첨 번호 선정 -> 담청 등수 로직 테스트용
 //		lottoNumbers[0] = 10;
 //		lottoNumbers[1] = 11;
@@ -75,16 +96,17 @@ public class MainDrive {
 //		lottoNumbers[3] = 21;
 //		lottoNumbers[4] = 30;
 //		lottoNumbers[5] = 35;
+//		bonusNum = 40;
 
 //		랜덤으로 만들어진 당첨번호들을 > 작은 수 ~ 큰 수로 정리.
 		for (int i = 0; i < lottoNumbers.length; i++) {
-			for (int j = 0; j < lottoNumbers.length-1; j++) {
+			for (int j = 0; j < lottoNumbers.length - 1; j++) {
 				if (lottoNumbers[j] > lottoNumbers[j + 1]) {
 					int backUp = lottoNumbers[j];
-					
-					lottoNumbers[j] = lottoNumbers[j+1];
-					
-					lottoNumbers[j+1] = backUp;
+
+					lottoNumbers[j] = lottoNumbers[j + 1];
+
+					lottoNumbers[j + 1] = backUp;
 				}
 			}
 		}
@@ -107,11 +129,23 @@ public class MainDrive {
 		if (correctCount == 6) {
 			System.out.println("1등 당첨");
 		} else if (correctCount == 5) {
-			System.out.println("임시 - 3등 당첨");
+
+			boolean isBonusCorrect = false;
+			for (int myNum : myNumbers) {
+				if (myNum == bonusNum) {
+					isBonusCorrect = true;
+					break;
+				}
+			}
+			if (isBonusCorrect) {
+				System.out.println("2등");
+			} else {
+				System.out.println("3등");
+			}
 		} else if (correctCount == 4) {
 			System.out.println("4등 당첨");
 		} else if (correctCount == 3) {
-			System.out.println("4등 당첨");
+			System.out.println("5등 당첨");
 		} else {
 			System.out.println("낙첨");
 		}
