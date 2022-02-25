@@ -69,25 +69,51 @@ public class MainDrive {
 		}
 
 //		임시 당첨 번호 선정 -> 담청 등수 로직 테스트용
-		lottoNumbers[0] = 10;
-		lottoNumbers[1] = 11;
-		lottoNumbers[2] = 20;
-		lottoNumbers[3] = 21;
-		lottoNumbers[4] = 30;
-		lottoNumbers[5] = 35;
+//		lottoNumbers[0] = 10;
+//		lottoNumbers[1] = 11;
+//		lottoNumbers[2] = 20;
+//		lottoNumbers[3] = 21;
+//		lottoNumbers[4] = 30;
+//		lottoNumbers[5] = 35;
 
+//		랜덤으로 만들어진 당첨번호들을 > 작은 수 ~ 큰 수로 정리.
+		for (int i = 0; i < lottoNumbers.length; i++) {
+			for (int j = 0; j < lottoNumbers.length-1; j++) {
+				if (lottoNumbers[j] > lottoNumbers[j + 1]) {
+					int backUp = lottoNumbers[j];
+					
+					lottoNumbers[j] = lottoNumbers[j+1];
+					
+					lottoNumbers[j+1] = backUp;
+				}
+			}
+		}
+
+//		정리 된 당첨번호를 확인
 		for (int num : lottoNumbers) {
 			System.out.println(num);
 		}
-		
+
 		int correctCount = 0;
 
 		for (int myNum : myNumbers) {
 			for (int winNum : lottoNumbers) {
-				if(myNum == winNum) {
+				if (myNum == winNum) {
 					correctCount++;
 				}
 			}
+		}
+
+		if (correctCount == 6) {
+			System.out.println("1등 당첨");
+		} else if (correctCount == 5) {
+			System.out.println("임시 - 3등 당첨");
+		} else if (correctCount == 4) {
+			System.out.println("4등 당첨");
+		} else if (correctCount == 3) {
+			System.out.println("4등 당첨");
+		} else {
+			System.out.println("낙첨");
 		}
 
 	}
