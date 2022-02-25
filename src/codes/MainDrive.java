@@ -51,7 +51,25 @@ public class MainDrive {
 				
 //				Math.random() =>  1 <= 랜덤 값 < 46
 				int randomNum = (int)(Math.random()*45+1);
+				
+				boolean isDupOk = true;
+				
+				for (int num : lottoNumbers) {
+					if(num == randomNum) {
+						isDupOk = false;
+						break;
+					}
+				}
+				
+				if(isDupOk) {
+					lottoNumbers[i] = randomNum;
+					break;
+				}
 			}
+		}
+		
+		for(int num : lottoNumbers) {
+			System.out.println(num);
 		}
 
 	}
