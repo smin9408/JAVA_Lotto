@@ -11,7 +11,7 @@ public class MainDrive {
 
 		int[] myNumbers = new int[6];
 
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < myNumbers.length; i++) {
 
 			while (true) {
 
@@ -41,6 +41,17 @@ public class MainDrive {
 
 			}
 
+		}
+
+		int[] lottoNumbers = new int[6];
+
+		for (int i = 0; i < lottoNumbers.length; i++) {
+
+			while(true) {
+				
+//				Math.random() =>  1 <= 랜덤 값 < 46
+				int randomNum = (int)(Math.random()*45+1);
+			}
 		}
 
 	}
