@@ -10,8 +10,22 @@ public class MainDrive {
 		Scanner sc = new Scanner(System.in);
 
 		for (int i = 0; i < 6; i++) {
-			System.out.print(i + 1 + "번째 숫자 : ");
-			int inputNum = sc.nextInt();
+
+			while (true) {
+
+				System.out.print(i + 1 + "번째 숫자 : ");
+				int inputNum = sc.nextInt();
+
+				boolean isRangeOk = (1 <= inputNum) && (inputNum <= 45);
+
+				if (isRangeOk) {
+					break;
+				} else {
+					System.out.println("45이하의 숫자를 넣어주세요");
+				}
+
+			}
+
 		}
 
 	}
